@@ -14,3 +14,5 @@ echo "export GOSUMDB=off" >> ~/.profile
 echo "Installion successful"
 
 echo $(go version)
+
+source ~/.profile

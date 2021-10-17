@@ -6,8 +6,7 @@ func main() {
 
 	if condition {
 		//do something
-	} 
-	else {
+	} else {
 
 	}
 

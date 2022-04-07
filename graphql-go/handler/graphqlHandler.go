@@ -8,6 +8,10 @@ import (
 	"github.com/devShahriar/go-cookbook/graphql-go/requestProcessor"
 )
 
+func PrintDetails(v interface{}) {
+	fmt.Println(v)
+}
+
 func GraphqlHandler() func(writer http.ResponseWriter, request *http.Request) {
 	return func(writer http.ResponseWriter, request *http.Request) {
 

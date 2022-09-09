@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"employee"
+	"fmt"
+)
 
 var ListOfRegisterUser []Person = []Person{}
 
@@ -16,7 +19,7 @@ type Student struct {
 	Age    int
 }
 
-//It varifies that &Student has implemented Person
+// It varifies that &Student has implemented Person
 var _ Person = &Student{}
 
 // - struct itself (value type)
@@ -50,6 +53,13 @@ func main() {
 	RegisterUser(s)
 	RegisterUser(s1)
 	RegisterUser(s2)
+
+	e1 := &employee.Employee{"12", "Ramisa", 12, "female"}
+	e2 := &employee.Employee{"13", "Shudip", 30, "male"}
+	e3 := &employee.Employee{"14", "Ramisa hates Shudip", 100, "neutral"}
+	RegisterUser(e1)
+	RegisterUser(e2)
+	RegisterUser(e3)
 
 	for _, i := range ListOfRegisterUser {
 		fmt.Println(i)

@@ -7,7 +7,7 @@ type Person struct {
 }
 
 func main() {
-	http
+
 	p := Person{"sdfasfas", 545454, "address"}
 	PrintDetails(p)
 	// data, _ := json.Marshal(p)

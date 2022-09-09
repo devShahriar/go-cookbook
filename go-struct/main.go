@@ -1,56 +1,58 @@
 package main
 
-import (
-	"fmt"
+import "fmt"
 
-	"github.com/devShahriar/go-c/cmd"
-)
+var ListOfRegisterUser []Person = []Person{}
 
-type Node struct {
-	Data int
-	Next *Node
+type Person interface {
+	PrintUserDetails()
+	UpdateUserId(string)
+	UpdateAge(int)
+	UpdetAgeAndUserId(int, string)
 }
 
-type List struct {
-	Head *Node
+type Student struct {
+	UserId string
+	Age    int
 }
 
-func (l *List) PrintList() {
-	list := l.Head
-	for list != nil {
-		fmt.Printf("|%v| ->", list.Data)
-		list = list.Next
-	}
-}
-func (l *List) Insert(data int) {
-	head := l.Head
-	if head == nil {
-		l.Head = &Node{Data: data}
-		return
-	}
-	for head.Next != nil {
-		head = head.Next
-	}
-	head.Next = &Node{Data: data}
-}
-func (n *Node) PrintList() {
+//It varifies that &Student has implemented Person
+var _ Person = &Student{}
 
-	for n != nil {
-		fmt.Printf("Data -> %v", n.Data)
-		n = n.Next.Next
-	}
+// - struct itself (value type)
+// - struct as reference (reference type)
 
+func (s *Student) PrintUserDetails() {
+	fmt.Printf("UserId : %v\nUser Age: %v", s.UserId, s.Age)
+}
+
+func (s *Student) UpdateUserId(userId string) {
+	s.UserId = userId
+}
+
+func (s *Student) UpdateAge(age int) {
+	s.Age = age
+}
+
+func (s *Student) UpdetAgeAndUserId(age int, userId string) {
+	s.UpdateAge(age)
+	s.UpdateUserId(userId)
+}
+
+func RegisterUser(p Person) {
+	ListOfRegisterUser = append(ListOfRegisterUser, p)
 }
 
 func main() {
+	s := &Student{"ramisa", 12}
+	s1 := &Student{"chudip", 23}
+	s2 := &Student{"ramisa_loves_shudip", 1111}
+	RegisterUser(s)
+	RegisterUser(s1)
+	RegisterUser(s2)
 
-	cmd.Execute()
+	for _, i := range ListOfRegisterUser {
+		fmt.Println(i)
+	}
 
-	// list := List{}
-	// list.Insert(4)
-	// list.Insert(8)
-	// list.Insert(9)
-	// list.Insert(7)
-	// list.Insert(1)
-	// list.PrintList()
 }
